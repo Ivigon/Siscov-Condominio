@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siscov - Cadastro</title>
+    <style>
+        body { font-family: Arial; background: #121212; color: white; margin: 0; }
+        nav { background: #1e1e1e; padding: 15px; display: flex; justify-content: space-around; border-bottom: 2px solid #4169E1; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        .container { padding: 20px; max-width: 500px; margin: auto; }
+        .card { background: #1e1e1e; padding: 20px; border-radius: 10px; border: 1px solid #4169E1; }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; background: #333; color: white; border: 1px solid #444; border-radius: 6px; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">🏠 Home</a> <a href="visitantes.html">👤 Visitantes</a> <a href="relatorios.html">📊 Relatórios</a></nav>
+    <div class="container">
+        <div class="card">
+            <h2>📝 Registrar Entrada</h2>
+            <input type="text" id="nome" placeholder="Nome Completo" required>
+            <input type="text" id="doc" placeholder="RG ou CPF">
+            <input type="text" id="destino" placeholder="Apartamento/Bloco">
+            <select id="tipo"><option>Visitante</option><option>Prestador de Serviço</option><option>Morador</option></select>
+            <button onclick="salvar()">Salvar e Autorizar</button>
+        </div>
+    </div>
+
+    <script>
+        function salvar() {
+            const nome = document.getElementById('nome').value;
+            if(!nome) return alert("Digite o nome!");
+            
+            const novoAcesso = {
+                nome: nome,
+                doc: document.getElementById('doc').value,
+                destino: document.getElementById('destino').value,
+                tipo: document.getElementById('tipo').value,
+                hora: new Date().toLocaleString('pt-BR')
+            };
+
+            // Puxa a lista atual ou cria uma nova
+            let lista = JSON.parse(localStorage.getItem('acessos') || '[]');
+            lista.push(novoAcesso);
+            localStorage.setItem('acessos', JSON.stringify(lista));
+
+            alert("✅ Registro salvo com sucesso!");
+            window.location.href = 'relatorios.html';
+        }
+    </script>
+</body>
+</html>

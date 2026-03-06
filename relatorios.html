@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siscov - Relatórios</title>
+    <style>
+        body { font-family: Arial; background: #121212; color: white; margin: 0; }
+        nav { background: #1e1e1e; padding: 15px; display: flex; justify-content: space-around; border-bottom: 2px solid #4169E1; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        .container { padding: 20px; }
+        .tabela-scroll { overflow-x: auto; background: #1e1e1e; border-radius: 10px; padding: 15px; border: 1px solid #333; }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        th { color: #4169E1; background: #252525; }
+        .limpar { background: #ff4444; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">🏠 Home</a> <a href="visitantes.html">👤 Visitantes</a> <a href="relatorios.html">📊 Relatórios</a></nav>
+    <div class="container">
+        <h2>📊 Fluxo de Pessoas (Histórico Local)</h2>
+        <button class="limpar" onclick="localStorage.clear(); location.reload();">🗑️ Limpar Todo Histórico</button>
+        <div class="tabela-scroll">
+            <table id="tabelaAcessos">
+                <thead>
+                    <tr><th>Data/Hora</th><th>Nome</th><th>Documento</th><th>Destino</th><th>Tipo</th></tr>
+                </thead>
+                <tbody id="corpoTabela">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const lista = JSON.parse(localStorage.getItem('acessos') || '[]');
+        const corpo = document.getElementById('corpoTabela');
+
+        lista.reverse().forEach(item => {
+            const linha = `<tr>
+                <td>${item.hora}</td>
+                <td>${item.nome}</td>
+                <td>${item.doc}</td>
+                <td>${item.destino}</td>
+                <td>${item.tipo}</td>
+            </tr>`;
+            corpo.innerHTML += linha;
+        });
+    </script>
+</body>
+</html>

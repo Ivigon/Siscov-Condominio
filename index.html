@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siscov - Painel</title>
+    <style>
+        :root { --bg: #121212; --card: #1e1e1e; --text: #fff; --prim: #4169E1; }
+        .light { --bg: #f0f2f5; --card: #fff; --text: #333; --prim: #0056b3; }
+        body { font-family: Arial; background: var(--bg); color: var(--text); margin: 0; transition: 0.3s; }
+        nav { background: var(--card); padding: 15px; display: flex; justify-content: space-around; border-bottom: 2px solid var(--prim); flex-wrap: wrap; }
+        nav a { color: var(--text); text-decoration: none; font-weight: bold; padding: 5px; }
+        .container { padding: 20px; max-width: 800px; margin: auto; }
+        .card { background: var(--card); padding: 25px; border-radius: 12px; border: 1px solid var(--prim); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        button { background: var(--prim); color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
+        .theme-btn { width: auto; background: #555; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">🏠 Início</a>
+        <a href="visitantes.html">👤 Novo Registro</a>
+        <a href="relatorios.html">📊 Relatórios</a>
+        <a href="login.html" style="color: #ff4444;">🚪 Sair</a>
+    </nav>
+    <div class="container">
+        <button class="theme-btn" onclick="document.body.classList.toggle('light')">🌓 Mudar Tema (Claro/Escuro)</button>
+        <div class="card">
+            <h1>🏢 Gestão de Acesso</h1>
+            <p>Sistema operando localmente e seguro.</p>
+            <hr color="#4169E1">
+            <h3>Status da Portaria: <span style="color: #28a745;">Online</span></h3>
+            <p>Utilize o menu acima para gerenciar moradores e visitantes. Somente usuários autorizados possuem acesso a estas ferramentas.</p>
+        </div>
+    </div>
+</body>
+</html>
